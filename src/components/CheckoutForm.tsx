@@ -9,8 +9,9 @@ const stripeKey: string = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || "";
 
 interface Product {
   _id: string;
-  title: string;
-  pricing: number;
+  name: string;
+  price: number;
+  image: string;
 }
 
 function generateTransactionId() {
@@ -34,8 +35,8 @@ export default function PaymentForm({ product }: { product: Product }) {
   useEffect(() => {
     if (product) {
       setPaymentInfo({
-        price: product?.pricing,
-        name: product?.title,
+        price: product.price,
+        name: product.name,
         transactionId: generateTransactionId(),
       });
     }

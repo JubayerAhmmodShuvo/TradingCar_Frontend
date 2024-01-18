@@ -16,7 +16,13 @@ type IDProps = {
 export default function Home({ params }: IDProps) {
   const { id: productId } = params;
   
-  const { data: product } = useGetServiceByIdQuery(productId);
+  const { data: products } = useGetServiceByIdQuery(productId);
+  const product = {
+    name: products?.title,
+    price: products?.pricing,
+    image: products?.images,
+    _id: products?._id,
+  };
   
 
   return (
@@ -30,13 +36,13 @@ export default function Home({ params }: IDProps) {
             <h2 className="card-title mx-auto text-center ">
               Please Pay for{" "}
               <span className="text-secondary mb-2 font-serif font-semibold text-purple-700 ">
-                {product?.title}{" "}
+                {products?.title}{" "}
               </span>
             </h2>
             <div className="flex justify-center items-center">
               <img
                 className="w-72 my-4 rounded"
-                src={product?.images}
+                src={products?.images}
                 alt="Product Image"
               />
             </div>
@@ -44,7 +50,7 @@ export default function Home({ params }: IDProps) {
             <p className="font-bold text-center mt-4 ">
               Total Amount: $ 
               <span className="text-purple-700 font-serif">
-                {product?.pricing}
+                {products?.pricing}
               </span>
             </p>
           </div>
