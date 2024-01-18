@@ -57,7 +57,7 @@ const UpComingServices = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {services.map((service) => (
             <div
-              key={service.title}
+              key={service?.title}
               className={`overflow-hidden shadow-md ${
                 service.upcoming ? "relative" : ""
               }`}
@@ -69,19 +69,19 @@ const UpComingServices = () => {
               )}
               <div className="overflow-hidden h-48">
                 <img
-                  alt={service.title}
-                  src={service.image}
+                  alt={service?.title}
+                  src={service?.image}
                   className="object-cover w-full h-full"
                 />
               </div>
               <div className="mt-4 p-4">
-                <h2 className="text-lg font-semibold">{service.title}</h2>
+                <h2 className="text-lg font-semibold">{service?.title}</h2>
                 {service.upcoming && (
                   <p className="text-gray-600">
-                    {expandedDescriptions[service.title]
-                      ? service.description
-                      : `${service.description.slice(0, 40)}${
-                          service.description.length > 40 ? "..." : ""
+                    {expandedDescriptions[service?.title]
+                      ? service?.description
+                      : `${service?.description.slice(0, 40)}${
+                          service?.description.length > 40 ? "..." : ""
                         }`}
                   </p>
                 )}

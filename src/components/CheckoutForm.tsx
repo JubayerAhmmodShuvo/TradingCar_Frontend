@@ -9,8 +9,8 @@ const stripeKey: string = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || "";
 
 interface Product {
   _id: string;
-  name: string;
-  price: number;
+  title: string;
+  pricing: number;
 }
 
 function generateTransactionId() {
@@ -30,12 +30,12 @@ export default function PaymentForm({ product }: { product: Product }) {
   const [createPayment, { isSuccess, isError }] = useCreatePaymentMutation();
 
   const { role, name, email } = getUserInfo() as any;
-
+  console.log(paymentInfo);
   useEffect(() => {
     if (product) {
       setPaymentInfo({
-        price: product.price,
-        name: product.name,
+        price: product?.pricing,
+        name: product?.title,
         transactionId: generateTransactionId(),
       });
     }

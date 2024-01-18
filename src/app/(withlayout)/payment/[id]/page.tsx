@@ -1,6 +1,7 @@
 "use client";
 import PaymentForm from "@/components/CheckoutForm";
-import { useGetProductByIdQuery } from "@/redux/api/productsApi";
+
+import { useGetServiceByIdQuery } from "@/redux/api/serviceApi";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
@@ -15,7 +16,8 @@ type IDProps = {
 export default function Home({ params }: IDProps) {
   const { id: productId } = params;
   
-  const { data: product } = useGetProductByIdQuery(productId);
+  const { data: product } = useGetServiceByIdQuery(productId);
+  
 
   return (
     <>
@@ -28,21 +30,21 @@ export default function Home({ params }: IDProps) {
             <h2 className="card-title mx-auto text-center ">
               Please Pay for{" "}
               <span className="text-secondary mb-2 font-serif font-semibold text-purple-700 ">
-                {product?.name}{" "}
+                {product?.title}{" "}
               </span>
             </h2>
             <div className="flex justify-center items-center">
               <img
                 className="w-72 my-4 rounded"
-                src={product?.image}
+                src={product?.images}
                 alt="Product Image"
               />
             </div>
 
             <p className="font-bold text-center mt-4 ">
-              Total Amount: $ {""}
+              Total Amount: $ 
               <span className="text-purple-700 font-serif">
-                {product?.price}
+                {product?.pricing}
               </span>
             </p>
           </div>
