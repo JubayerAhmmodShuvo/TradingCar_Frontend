@@ -31,7 +31,7 @@ export default function PaymentForm({ product }: { product: Product }) {
   const [createPayment, { isSuccess, isError }] = useCreatePaymentMutation();
 
   const { role, name, email } = getUserInfo() as any;
-  console.log(paymentInfo);
+
   useEffect(() => {
     if (product) {
       setPaymentInfo({
