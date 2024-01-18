@@ -51,7 +51,7 @@ const AvailableService = () => {
 
       {services && visibleServices < services?.length && (
         <div className="text-center p-4">
-          <Link href={`/user/allservice`}>
+          <Link href={`/all-cars`}>
             <button
               className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-700 focus:outline-none"
               onClick={loadMore}
