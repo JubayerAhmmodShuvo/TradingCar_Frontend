@@ -1,5 +1,6 @@
 "use client"
 
+import Loading from "@/app/loading";
 import CustomCard from "@/components/CustomCard";
 import { useGetAllServiceQuery } from "@/redux/api/serviceApi";
 import React, { useState } from "react";
@@ -15,7 +16,7 @@ const AllService = () => {
   return (
     <div className="overflow-x-hidden max-w-7xl w-full mx-auto">
       {isLoading ? (
-        <p>Loading...</p>
+        <Loading />
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4 p-4">
           {services
