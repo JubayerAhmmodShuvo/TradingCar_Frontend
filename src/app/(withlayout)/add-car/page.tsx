@@ -1,7 +1,9 @@
 "use client";
 
-import { useCreateServiceMutation } from "@/redux/api/serviceApi";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useCreateServiceMutation } from "@/redux/api/serviceApi";
+import { uploadCloudinary } from "@/types/uploads";
 
 import { Form, Field, useForm } from "react-hook-form";
 
@@ -14,23 +16,36 @@ const AddCar = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data: any) => {
-    try {
-      const response = await addService(data);
-      if (response) {
-        alert("Service created successfully!");
-        router.push("/admin-table");
-      } else {
-        alert("Service creation failed.");
-      }
-    } catch (err:any) {
-      console.error(err.message);
-    }
-  };
+   const [image, setImage] = useState<File | null>(null);
+
+   const onSubmit = async (data: any) => {
+     try {
+       if (image) {
+         const carImage = await uploadCloudinary(image);
+         data.images = carImage.url; 
+       }
+
+       const response = await addService(data);
+
+       if (response) {
+         alert("Service created successfully!");
+         router.push("/admin-table");
+       } else {
+         alert("Service creation failed.");
+       }
+     } catch (err: any) {
+       console.error(err.message);
+     }
+   };
+
+   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+     const file = e.target.files?.[0] || null;
+     setImage(file);
+   };
+
 
   return (
-    <div className="max-w-7xl mx-auto" >
-     
+    <div className="max-w-7xl mx-auto">
       <h1 className="text-2xl font-semibold mb-5">Add Car</h1>
 
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -46,7 +61,6 @@ const AddCar = () => {
                 {...register("title", { required: "Order Name is required" })}
                 className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
-            
             </div>
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-600">
@@ -59,7 +73,6 @@ const AddCar = () => {
                 })}
                 className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
-             
             </div>
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-600">
@@ -70,7 +83,6 @@ const AddCar = () => {
                 {...register("email", { required: "Email is required" })}
                 className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
-             
             </div>
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-600">
@@ -81,7 +93,6 @@ const AddCar = () => {
                 {...register("pricing", { required: "Price is required" })}
                 className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
-             
             </div>
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-600">
@@ -94,7 +105,6 @@ const AddCar = () => {
                 })}
                 className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
-              
             </div>
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-600">
@@ -103,6 +113,17 @@ const AddCar = () => {
               <input
                 type="text"
                 {...register("contactInfo")}
+                className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-600">
+                Upload Image
+              </label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
                 className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
             </div>
