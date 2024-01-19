@@ -44,11 +44,11 @@ function Table() {
    };
 
   return (
-    <div className=" min-h-screen py-2 max-w-7xl mx-auto mt-4">
-      <div className=" w-full px-4">
-        <h1 className="text-3xl font-bold text-purple-900 font-serif text-center">
-          Table
-        </h1>
+    <div className=" min-h-screen py-2 max-w-7xl mx-auto mt-4 ">
+      <h1 className="text-3xl font-bold text-purple-900 font-serif text-center">
+        Table
+      </h1>
+      <div className=" w-full px-4 overflow-x-auto">
         <table className="table-auto border-collapse w-full mt-6">
           <thead>
             <tr>

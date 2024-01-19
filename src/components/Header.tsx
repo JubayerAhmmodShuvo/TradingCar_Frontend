@@ -39,6 +39,7 @@ const Header = () => {
           <Link href="/admin-table">Admin Table</Link>
           <Link href="/contact-us">Contact Us</Link>
           <Link href="/about-us">About Us</Link>
+          <Link href="/add-car">Add Car</Link>
         </nav>
 
         <button
@@ -87,21 +88,23 @@ const Header = () => {
                 <li className="mx-auto my-3 font-bold text-center">
                   <Link href="/all-cars">All Cars</Link>
                 </li>
+                <li className="mx-auto font-bold text-center ">
+                  <Link href="/add-car">Add Car</Link>
+                </li>
+                <li className="mx-auto my-3 font-bold text-center ">
+                  <Link href="/admin-table">Admin Table</Link>
+                </li>
                 <li className="mx-auto my-3 font-bold text-center">
                   <Link href="/contact-us">Contact Us</Link>
                 </li>
-                <li className="mx-auto font-bold text-center ">
+                <li className="mx-auto my-3 font-bold text-center ">
                   <Link href="/about-us">About Us</Link>
-                </li>
-                <li className="mx-auto font-bold text-center ">
-                  <Link href="/admin-table">Admin Table</Link>
                 </li>
               </ul>
             </div>
           </div>
         )}
 
-     
         <div className="flex items-center">
           <button
             onClick={logOut}
