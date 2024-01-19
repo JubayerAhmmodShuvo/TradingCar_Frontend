@@ -20,32 +20,30 @@ const AvailableService = () => {
 
       {services && (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4">
-          {services
-            ?.slice(0, visibleServices)
-            .map(
-              (service: {
-                _id: React.Key | null | undefined;
-                images: string;
-                title: string;
-                pricing: number;
-                overallRating: number;
-                availability: boolean;
-                serviceId: string | null | undefined;
-              }) => (
-                <div key={service?._id}>
-                  <CustomCard
-                    image={service?.images}
-                    title={service?.title}
-                    price={service?.pricing}
-                    rating={service?.overallRating}
-                    availability={service?.availability}
-                    onAddToCart={() => {}}
-                    onDetails={() => {}}
-                    serviceId={service?._id}
-                  />
-                </div>
-              )
-            )}
+          {services?.slice(0, visibleServices).map(
+            (service: {
+              _id: string; 
+              images: string;
+              title: string;
+              pricing: number;
+              overallRating: number;
+              availability: boolean;
+              serviceId: string;
+            }) => (
+              <div key={service?._id}>
+                <CustomCard
+                  image={service?.images}
+                  title={service?.title}
+                  price={service?.pricing}
+                  rating={service?.overallRating}
+                  availability={service?.availability}
+                  onAddToCart={() => {}}
+                  onDetails={() => {}}
+                  serviceId={service?._id}
+                />
+              </div>
+            )
+          )}
         </div>
       )}
 
