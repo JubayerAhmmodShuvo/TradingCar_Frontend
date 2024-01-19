@@ -6,6 +6,7 @@ import Link from "next/link";
 
 const Header = () => {
   const router = useRouter();
+ 
 
   const logOut = () => {
      setMobileMenuOpen((prevMobileMenuOpen) => !prevMobileMenuOpen);
@@ -36,10 +37,10 @@ const Header = () => {
 
         <nav className="hidden md:flex space-x-6 text-lg">
           <Link href="/all-cars">All Cars</Link>
-          <Link href="/admin-table">Admin Table</Link>
-          <Link href="/contact-us">Contact Us</Link>
-          <Link href="/about-us">About Us</Link>
           <Link href="/add-car">Add Car</Link>
+          <Link href="/admin-table">Admin Table</Link>
+          <Link href="/about-us">About Us</Link>
+          <Link href="/contact-us">Contact Us</Link>
         </nav>
 
         <button
