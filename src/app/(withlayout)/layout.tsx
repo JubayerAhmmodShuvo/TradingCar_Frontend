@@ -10,6 +10,10 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { authKey } from "@/constants/storageKey";
 
+import Modal from "react-modal";
+
+
+
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -25,15 +29,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       router.push("/login");
     } else {
       setIsLoading(true);
-      const timeoutId = setTimeout(() => {
-        logOut();
-      }, 4320000);
-
-      return () => {
-        clearTimeout(timeoutId);
-      };
     }
-  }, [router, isLoading, userLoggedIn]);
+  }, [router, isLoading]);
 
   if (!isLoading) {
     return <Loading />;

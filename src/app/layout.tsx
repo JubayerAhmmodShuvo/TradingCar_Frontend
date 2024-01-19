@@ -4,6 +4,9 @@ import type { Metadata } from "next";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Modal from "react-modal";
+
+
 
 
 export const metadata: Metadata = {

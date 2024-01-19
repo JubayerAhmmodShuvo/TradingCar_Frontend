@@ -8,6 +8,7 @@ const Header = () => {
   const router = useRouter();
 
   const logOut = () => {
+     setMobileMenuOpen((prevMobileMenuOpen) => !prevMobileMenuOpen);
     removeUserInfo(authKey);
     router.push("/login");
   };
@@ -24,7 +25,6 @@ const Header = () => {
       }`}
     >
       <div className="flex justify-between items-center h-full">
-      
         <Link
           className={`font-bold font-serif text-xl text-purple-700 ${
             mobileMenuOpen ? "text-purple-700 " : "text-purple-700 "
@@ -34,14 +34,13 @@ const Header = () => {
           TradingCar
         </Link>
 
-       
         <nav className="hidden md:flex space-x-6 text-lg">
           <Link href="/all-cars">All Cars</Link>
+          <Link href="/admin-table">Admin Table</Link>
           <Link href="/contact-us">Contact Us</Link>
           <Link href="/about-us">About Us</Link>
         </nav>
 
-     
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="md:hidden text-black focus:outline-none"
@@ -86,25 +85,24 @@ const Header = () => {
             <div className="mx-auto">
               <ul className="mx-auto">
                 <li className="mx-auto my-3 font-bold text-center">
-                  
                   <Link href="/all-cars">All Cars</Link>
                 </li>
                 <li className="mx-auto my-3 font-bold text-center">
-                 
                   <Link href="/contact-us">Contact Us</Link>
                 </li>
                 <li className="mx-auto font-bold text-center ">
-                 
                   <Link href="/about-us">About Us</Link>
+                </li>
+                <li className="mx-auto font-bold text-center ">
+                  <Link href="/admin-table">Admin Table</Link>
                 </li>
               </ul>
             </div>
           </div>
         )}
 
-        {/* User Info and Logout */}
+     
         <div className="flex items-center">
-         
           <button
             onClick={logOut}
             className={`text-black cursor-pointer bg-transparent hover:bg-purple-700 font-medium hover:text-white py-2 px-4 border border-black hover:border-transparent rounded ${
